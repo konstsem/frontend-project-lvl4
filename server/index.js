@@ -16,8 +16,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 const appPath = path.join(__dirname, '..');
 const isDevelopment = !isProduction;
 
-const setUpViews = (app, options) => {
-  const domain = isDevelopment ? `http://localhost:${options.port}` : '';
+const setUpViews = (app) => {
+  const domain = isDevelopment ? 'http://localhost:8080' : '';
   app.register(pointOfView, {
     engine: {
       pug: Pug,
@@ -36,15 +36,15 @@ const setUpStaticAssets = (app) => {
   });
 };
 
-export default (options) => {
+export default (state = {}) => {
   const app = fastify();
 
-  setUpViews(app, options);
+  setUpViews(app);
   setUpStaticAssets(app);
 
   const io = socket(app.server);
 
-  addRoutes(app, io, options.state || {});
+  addRoutes(app, io, state || {});
 
   return app;
 };
