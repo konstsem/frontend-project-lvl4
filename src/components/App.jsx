@@ -3,7 +3,8 @@ import { render } from 'react-dom';
 // import { Provider } from 'react-redux';
 import Channels from './Channels';
 
-export default (gon) => {
+export default (gon, userName) => {
+  console.log(userName);
   const rootEl = document.getElementById('chat');
   render(
     <div>
