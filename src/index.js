@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-console.log('it works!');
+// console.log('it works!');
 let userName = cookies.get('name');
 if (!userName) {
   userName = faker.name.findName();
