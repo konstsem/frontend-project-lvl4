@@ -11,10 +11,10 @@ export default (gon, userName) => {
   render(
     <div className="container">
       <div className="row">
-        <div className="col-4 left-pan">
+        <div className="col-3 left-pan">
           <Channels gon={gon} />
         </div>
-        <div className="col-8 right-pan">
+        <div className="col-9 right-pan">
           <UserNameContext.Provider value={userName}>
             <Form />
           </UserNameContext.Provider>

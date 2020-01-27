@@ -1,13 +1,26 @@
 import React from 'react';
 // import React, { useContext } from 'react';
 // import Context from '../context';
+import cn from 'classnames';
 
 const Channels = (props) => {
-  const { gon: { channels } } = props;
+  const { gon: { channels, currentChannelId } } = props;
   // const userName = useContext(Context);
+
+  const renderChannel = ({ id, name }) => {
+    const shareClasses = {
+      'nav-link': true,
+      'channels-item': true,
+      active: id === currentChannelId,
+    };
+    return (
+      <div className={cn(shareClasses)} key={id}>{name}</div>
+    );
+  };
+
   return (
-    <div className="channels-group">
-      {channels.map(({ id, name }) => <div className="channels-item" key={id}>{name}</div>)}
+    <div className="nav nav-pills flex-column channels-group">
+      {channels.map(renderChannel)}
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   Formik,
-  Form as F,
+  Form,
   Field,
   ErrorMessage,
 } from 'formik';
 
-const Form = () => (
+const NewMessageForm = () => (
   <Formik
     initialValues={{ message: '' }}
     onSubmit={(values, { setSubmitting }) => {
@@ -15,15 +15,15 @@ const Form = () => (
     }}
   >
     {({ isSubmitting }) => (
-      <F>
+      <Form>
         <Field type="text" name="message" />
-        <ErrorMessage name="message" component="div" />
         <button type="submit" disabled={isSubmitting}>
           Submit
         </button>
-      </F>
+        <ErrorMessage name="message" component="div" />
+      </Form>
     )}
   </Formik>
 );
 
-export default Form;
+export default NewMessageForm;
