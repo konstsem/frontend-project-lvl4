@@ -10,13 +10,15 @@ export default (gon, userName) => {
   const rootEl = document.getElementById('chat');
   render(
     <div className="container">
-      <div className="left-pan">
-        <Channels gon={gon} />
-      </div>
-      <div className="right-pan">
-        <UserNameContext.Provider value={userName}>
-          <Form />
-        </UserNameContext.Provider>
+      <div className="row">
+        <div className="col-4 left-pan">
+          <Channels gon={gon} />
+        </div>
+        <div className="col-8 right-pan">
+          <UserNameContext.Provider value={userName}>
+            <Form />
+          </UserNameContext.Provider>
+        </div>
       </div>
     </div>,
     rootEl,
