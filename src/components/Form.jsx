@@ -10,14 +10,16 @@ const NewMessageForm = () => (
   <Formik
     initialValues={{ message: '' }}
     onSubmit={(values, { setSubmitting }) => {
-      console.log(values.message);
-      setSubmitting(false);
+      setTimeout(() => {
+        console.log(values.message);
+        setSubmitting(false);
+      }, 500);
     }}
   >
     {({ isSubmitting }) => (
-      <Form>
-        <Field type="text" name="message" />
-        <button type="submit" disabled={isSubmitting}>
+      <Form className="form">
+        <Field className="container-fluid" type="text" name="message" />
+        <button className="collapse" type="submit" disabled={isSubmitting}>
           Submit
         </button>
         <ErrorMessage name="message" component="div" />

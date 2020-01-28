@@ -14,7 +14,7 @@ const Channels = (props) => {
       active: id === currentChannelId,
     };
     return (
-      <div className={cn(shareClasses)} key={id}>{name}</div>
+      <div className={cn(shareClasses)} key={id}>{`#  ${name}`}</div>
     );
   };
 
