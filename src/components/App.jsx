@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import UserNameContext from '../context';
 import Channels from './Channels';
 import Form from './Form';
+import Messages from './Messages';
 import './App.css';
 
 
@@ -19,6 +20,7 @@ export default (gon, userName) => {
           <UserNameContext.Provider value={userName}>
             <Form />
           </UserNameContext.Provider>
+          <Messages />
         </div>
       </div>
     </div>,
