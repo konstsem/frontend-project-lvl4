@@ -2,12 +2,14 @@
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { configureStore } from '@reduxjs/toolkit';
 import gon from 'gon';
 import faker from 'faker';
 import cookies from 'js-cookie';
 
 import '../assets/application.scss';
 import app from './components/App';
+import { channels, messages, currentChannelId } from './reducers';
 
 // import io from 'socket.io-client';
 
@@ -22,4 +24,13 @@ if (!userName) {
   cookies.set('name', userName);
 }
 
-app(gon, userName);
+const store = configureStore({
+  reducer: {
+    channels,
+    messages,
+    currentChannelId,
+  },
+  preloadedState: gon,
+});
+
+app(store, userName);

@@ -1,10 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Messages = () => (
-  <ul>
-    <li>Message message message</li>
-    <li>Also message with just text</li>
-  </ul>
-);
+const mapStateToProps = (state) => {
+  const props = {
+    messages: state.messages,
+  };
+  return props;
+};
 
-export default Messages;
+const Messages = (props) => {
+  const { messages } = props;
+  return (
+    <ul>
+      {messages.map(({ id, text, author }) => (
+        <li key={`${author}-${id}`}>
+          <div>
+            {author}
+          </div>
+          <div>
+            {text}
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default connect(mapStateToProps)(Messages);
