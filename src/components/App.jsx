@@ -5,7 +5,6 @@ import UserNameContext from '../context';
 import Channels from './Channels';
 import Form from './Form';
 import Messages from './Messages';
-import './App.css';
 
 
 export default (store, userName) => {
