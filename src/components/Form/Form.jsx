@@ -11,7 +11,7 @@ const NewMessageForm = () => (
     initialValues={{ message: '' }}
     onSubmit={(values, { setSubmitting }) => {
       setTimeout(() => {
-        console.log(values.message);
+        // console.log(values.message);
         setSubmitting(false);
       }, 500);
     }}

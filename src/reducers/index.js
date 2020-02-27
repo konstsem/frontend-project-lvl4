@@ -17,7 +17,7 @@ export const messages = createReducer([], {
       message,
     ];
   },
-})
+});
 
 export const currentChannelId = createReducer('', {
   [actions.handleCurrentChannel](state, { payload: id }) {

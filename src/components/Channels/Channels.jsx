@@ -19,19 +19,26 @@ const Channels = (props) => {
 
   const renderChannel = ({ id, name }) => {
     const shareClasses = {
-      'nav-link': true,
-      'channels-item': true,
-      active: id === currentChannelId,
+      channel: true,
+      container: true,
+      'text-lowercase': true,
+      current: id === currentChannelId,
+      'text-white': id === currentChannelId,
     };
     return (
-      <div className={cn(shareClasses)} key={id}>{`#  ${name}`}</div>
+      <div className={cn(shareClasses)} key={id}><span>{`#  ${name}`}</span></div>
     );
   };
 
   return (
-    <div className="nav nav-pills flex-column channels-group">
-      {channels.map(renderChannel)}
-    </div>
+    <aside className="channels">
+      <div className="channels__title">
+        Channels
+      </div>
+      <div className="channels__wrapper d-flex flex-column">
+        {channels.map(renderChannel)}
+      </div>
+    </aside>
   );
 };
 

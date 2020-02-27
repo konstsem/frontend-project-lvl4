@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const Messages = (props) => {
   const { messages } = props;
-  return (
+  return messages.length ? (
     <ul>
       {messages.map(({ id, text, author }) => (
         <li key={`${author}-${id}`}>
@@ -23,7 +23,7 @@ const Messages = (props) => {
         </li>
       ))}
     </ul>
-  );
+  ) : null;
 };
 
 export default connect(mapStateToProps)(Messages);

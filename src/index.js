@@ -8,7 +8,7 @@ import faker from 'faker';
 import cookies from 'js-cookie';
 
 import '../assets/application.scss';
-import app from './components/App';
+import app from './App';
 import { channels, messages, currentChannelId } from './reducers';
 
 // import io from 'socket.io-client';
