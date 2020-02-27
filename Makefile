@@ -17,7 +17,10 @@ build:
 	npm run build
 
 test:
-	npm test
+	npm test -s
+
+test-coverage:
+	npm test -- --coverage
 
 lint:
 	npx eslint . --ext js,jsx
