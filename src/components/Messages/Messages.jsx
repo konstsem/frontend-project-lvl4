@@ -11,18 +11,16 @@ const mapStateToProps = (state) => {
 const Messages = (props) => {
   const { messages } = props;
   return messages.length ? (
-    <ul>
+    <div className="messages">
       {messages.map(({ id, text, author }) => (
-        <li key={`${author}-${id}`}>
-          <div>
-            {author}
+        <div className="message" key={`${author}-${id}`}>
+          <div className="message__main">
+            <div className="message__author-name">{author}</div>
+            <p className="message__text">{text}</p>
           </div>
-          <div>
-            {text}
-          </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   ) : null;
 };
 
