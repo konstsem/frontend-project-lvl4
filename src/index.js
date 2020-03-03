@@ -6,12 +6,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import gon from 'gon';
 import faker from 'faker';
 import cookies from 'js-cookie';
+import io from 'socket.io-client';
 
 import '../assets/application.scss';
 import app from './App';
 import { channels, messages, currentChannelId } from './reducers';
-
-// import io from 'socket.io-client';
+import { addChannel, addMessage } from './actions';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -32,5 +32,9 @@ const store = configureStore({
   },
   preloadedState: gon,
 });
+
+const socket = io('http://localhost:5000');
+socket.on('newChannel', ({ data: { attributes } }) => store.dispatch(addChannel(attributes)));
+socket.on('newMessage', ({ data: { attributes } }) => store.dispatch(addMessage(attributes)));
 
 app(store, userName);
