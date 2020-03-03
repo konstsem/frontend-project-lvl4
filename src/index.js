@@ -33,7 +33,7 @@ const store = configureStore({
   preloadedState: gon,
 });
 
-const socket = io(`http://localhost${process.env.PORT || 5000}`);
+const socket = io(`http://localhost:${process.env.PORT || 5000}`);
 socket.on('newChannel', ({ data: { attributes } }) => store.dispatch(addChannel(attributes)));
 socket.on('newMessage', ({ data: { attributes } }) => store.dispatch(addMessage(attributes)));
 
