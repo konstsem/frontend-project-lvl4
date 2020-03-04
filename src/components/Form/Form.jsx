@@ -23,22 +23,26 @@ const NewMessageForm = ({ currentChannelId }) => {
   return (
     <Formik
       initialValues={{ message: '' }}
-      onSubmit={({ message }, { setSubmitting, resetForm }) => {
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 5000);
+      onSubmit={({ message }, { setSubmitting, resetForm, setErrors }) => {
+        // setTimeout(() => {
+        //   setSubmitting(false);
+        // }, 5000);
         // send message to server
+        setSubmitting(true);
         axios.post(messagesPath, { data: { attributes: { author: userName, text: message } } })
-          .then(resetForm())
-          .catch((err) => console.error(err));
+          .then(() => {
+            setSubmitting(false);
+            resetForm();
+          })
+          .catch((err) => {
+            setErrors({ message: `Has been error: ${err}, try again, please` });
+            setSubmitting(false);
+          });
       }}
     >
       {({ isSubmitting }) => (
         <Form className="form">
-          <Field className="container-fluid" type="text" name="message" />
-          <button className="collapse" type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
+          <Field className="container-fluid" type="text" name="message" disabled={isSubmitting} required />
           <ErrorMessage name="message" component="div" />
         </Form>
       )}

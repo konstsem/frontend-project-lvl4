@@ -4,7 +4,7 @@ import Messages from '../Messages/Messages';
 
 const Main = () => (
   <main className="main container-fluid container-fluid d-flex flex-column justify-content-between">
-    <div className="main__wrapper overflow-auto">
+    <div className="main__wrapper overflow-auto d-flex flex-column-reverse">
       <Messages />
     </div>
     <footer>
