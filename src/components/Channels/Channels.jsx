@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import React, { useContext } from 'react';
-// import Context from '../context';
 import cn from 'classnames';
+import * as actions from '../../actions';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -12,10 +11,17 @@ const mapStateToProps = (state) => {
   return props;
 };
 
+const actionCreators = {
+  setCurrentChannel: actions.setCurrentChannel,
+};
+
 const Channels = (props) => {
-  // const { gon: { channels, currentChannelId } } = props;
-  // const userName = useContext(Context);
-  const { channels, currentChannelId } = props;
+  const { channels, currentChannelId, setCurrentChannel } = props;
+
+  const handleCurrentChannel = (id) => (e) => {
+    e.preventDefault();
+    setCurrentChannel(id);
+  };
 
   const renderChannel = ({ id, name }) => {
     const shareClasses = {
@@ -26,7 +32,7 @@ const Channels = (props) => {
       'text-white': id === currentChannelId,
     };
     return (
-      <div className={cn(shareClasses)} key={id}><span>{`#  ${name}`}</span></div>
+      <button type="button" onClick={handleCurrentChannel(id)} className={cn(shareClasses)} key={id}><span>{`#  ${name}`}</span></button>
     );
   };
 
@@ -42,4 +48,4 @@ const Channels = (props) => {
   );
 };
 
-export default connect(mapStateToProps)(Channels);
+export default connect(mapStateToProps, actionCreators)(Channels);

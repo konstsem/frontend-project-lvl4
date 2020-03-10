@@ -17,6 +17,14 @@
 
 .channel {
   padding: 1px 15px;
+  border: none;
+  text-align: left;
+  background-color: inherit;
+  color: white;
+}
+
+.channel:focus {
+  outline: none;
 }
 
 .current {
