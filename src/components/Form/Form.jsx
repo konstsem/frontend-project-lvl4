@@ -42,7 +42,7 @@ const NewMessageForm = ({ currentChannelId }) => {
     >
       {({ isSubmitting }) => (
         <Form className="form">
-          <Field className="container-fluid" type="text" name="message" disabled={isSubmitting} required />
+          <Field className="container-fluid" type="text" name="message" autofocus="true" disabled={isSubmitting} required />
           <ErrorMessage name="message" component="div" />
         </Form>
       )}
