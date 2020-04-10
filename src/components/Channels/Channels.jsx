@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import * as actions from '../../actions';
+import showModal from '../Modals';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -37,7 +38,8 @@ const Channels = (props) => {
   };
 
   return (
-    <aside className="channels">
+    <aside className="channels d-flex flex-column">
+      <button onClick={() => showModal('adding')} type="button" className="container text-lowercase text-white add-button"><span>Add channel</span></button>
       <div className="channels__title">
         Channels
       </div>

@@ -31,3 +31,12 @@
   background-color: rgb(18, 100, 163);
 }
 
+.add-button {
+  background-color: #3F0E40;
+  border: none;
+  padding: 5px 0;
+  &:focus {
+    outline: none;
+  }
+}
+
