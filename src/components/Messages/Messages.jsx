@@ -15,7 +15,7 @@ const Messages = (props) => {
       {messages.map(({ id, text, author }) => (
         <div className="message" key={`${author}-${id}`}>
           <div className="message__main">
-            <div className="message__author-name">{author}</div>
+            <div className="message__author-name"><b>{author}</b></div>
             <p className="message__text">{text}</p>
           </div>
         </div>
