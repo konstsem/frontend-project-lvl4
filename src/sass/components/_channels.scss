@@ -1,42 +1,30 @@
 .channels {
-  background-color: rgb(63, 14, 64);
   font-size: 15px;
-  font-weight: 300;
-  color: rgb(207, 195, 207);
+  // font-weight: 300;
 }
 
 .channels__wrapper {
-  min-width: 220px;
+  // min-width: 220px;
 }
 
 .channels__title {
-  font-size: 15px;
+  // font-size: 15px;
   font-weight: 400;
   padding: 0 10px;
-}
-
-.channel {
-  padding: 1px 15px;
-  border: none;
-  text-align: left;
-  background-color: inherit;
-  color: white;
-}
-
-.channel:focus {
-  outline: none;
 }
 
 .current {
   background-color: rgb(18, 100, 163);
 }
 
-.add-button {
-  background-color: #3F0E40;
-  border: none;
-  padding: 5px 0;
-  &:focus {
-    outline: none;
-  }
+.bg-aside {
+  background-color: rgb(63, 14, 64);
 }
 
+.outline-none:focus {
+  outline: none;
+}
+
+.text-main {
+  color: rgb(207, 195, 207);
+}

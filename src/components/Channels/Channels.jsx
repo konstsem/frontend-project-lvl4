@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import cn from 'classnames';
 import * as actions from '../../actions';
-import showModal from '../Modals';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -14,37 +14,72 @@ const mapStateToProps = (state) => {
 
 const actionCreators = {
   setCurrentChannel: actions.setCurrentChannel,
+  setModal: actions.setModal,
 };
 
 const Channels = (props) => {
-  const { channels, currentChannelId, setCurrentChannel } = props;
+  const {
+    channels,
+    currentChannelId,
+    setCurrentChannel,
+    setModal,
+  } = props;
 
   const handleCurrentChannel = (id) => (e) => {
     e.preventDefault();
     setCurrentChannel(id);
   };
 
+  const isRemovable = () => _.find(channels, (channel) => channel.id === currentChannelId)
+    .removable;
+
   const renderChannel = ({ id, name }) => {
-    const shareClasses = {
-      channel: true,
+    const channelClasses = {
       container: true,
       'text-lowercase': true,
+      'bg-aside': id !== currentChannelId,
       current: id === currentChannelId,
-      'text-white': id === currentChannelId,
+      'd-flex': true,
+      'outline-none': true,
+      'border-0': true,
+      'text-white': true,
     };
     return (
-      <button type="button" onClick={handleCurrentChannel(id)} className={cn(shareClasses)} key={id}><span>{`#  ${name}`}</span></button>
+      <button type="button" onClick={handleCurrentChannel(id)} className={cn(channelClasses)} key={id}>
+        <span>{`#  ${name}`}</span>
+      </button>
     );
+  };
+  const buttonClasses = {
+    container: true,
+    'bg-aside': true,
+    'outline-none': true,
+    'border-0': true,
+  };
+  const removableButtonClasses = {
+    ...buttonClasses,
+    'text-white': isRemovable(),
+    'text-main': !isRemovable(),
   };
 
   return (
-    <aside className="channels d-flex flex-column">
-      <button onClick={() => showModal('adding')} type="button" className="container text-lowercase text-white add-button"><span>Add channel</span></button>
+    <aside className="channels d-flex flex-column bg-aside text-main pt-1">
       <div className="channels__title">
         Channels
       </div>
       <div className="channels__wrapper d-flex flex-column">
         {channels.map(renderChannel)}
+      </div>
+      <div className="mt-auto">
+        <button onClick={() => setModal({ type: 'adding', context: null })} type="button" className={cn({ ...buttonClasses, 'text-white': true })}>
+          <span>Add channel</span>
+        </button>
+        <button type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
+          <span>Rename channel</span>
+        </button>
+        <button onClick={() => setModal({ type: 'removing', context: { id: currentChannelId } })} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
+          <span>Remove channel</span>
+        </button>
       </div>
     </aside>
   );

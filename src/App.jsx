@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import UserNameContext from './context';
 import Channels from './components/Channels/Channels';
 import Main from './components/Main/Main';
+import Modal from './components/Modal';
 // import Form from './Form';
 // import Messages from './Messages';
 
@@ -17,6 +18,7 @@ export default (store, userName) => {
         <UserNameContext.Provider value={userName}>
           <Main />
         </UserNameContext.Provider>
+        <Modal />
       </div>
     </Provider>,
     rootEl,
