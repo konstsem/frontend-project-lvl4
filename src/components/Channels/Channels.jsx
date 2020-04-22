@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   const props = {
     channels: state.channels,
     currentChannelId: state.currentChannelId,
+    currentChannelName: _.find(state.channels, (item) => item.id === state.currentChannelId).name,
   };
   return props;
 };
@@ -21,6 +22,7 @@ const Channels = (props) => {
   const {
     channels,
     currentChannelId,
+    currentChannelName,
     setCurrentChannel,
     setModal,
   } = props;
@@ -74,7 +76,7 @@ const Channels = (props) => {
         <button onClick={() => setModal({ type: 'adding', context: null })} type="button" className={cn({ ...buttonClasses, 'text-white': true })}>
           <span>Add channel</span>
         </button>
-        <button type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
+        <button onClick={() => setModal({ type: 'renaming', context: { id: currentChannelId, currentChannelName } })} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
           <span>Rename channel</span>
         </button>
         <button onClick={() => setModal({ type: 'removing', context: { id: currentChannelId } })} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>

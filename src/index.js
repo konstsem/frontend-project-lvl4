@@ -16,7 +16,13 @@ import {
   currentChannelId,
   modal,
 } from './reducers';
-import { addChannel, addMessage, removeChannel, setCurrentChannel } from './actions';
+import {
+  addChannel,
+  addMessage,
+  removeChannel,
+  renameChannel,
+  setCurrentChannel,
+} from './actions';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -51,6 +57,9 @@ socket.on('newMessage', ({ data: { attributes } }) => store.dispatch(addMessage(
 socket.on('removeChannel', ({ data: { id } }) => {
   store.dispatch(setCurrentChannel(1));
   store.dispatch(removeChannel(id));
+});
+socket.on('renameChannel', ({ data: { id, attributes: { name } } }) => {
+  store.dispatch(renameChannel({ id, name }));
 });
 
 app(store, userName);

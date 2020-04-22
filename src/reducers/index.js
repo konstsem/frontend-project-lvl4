@@ -12,6 +12,12 @@ export const channels = createReducer([], {
   [actions.removeChannel](state, { payload: id }) {
     return _.filter(state, (channel) => channel.id !== id);
   },
+  [actions.renameChannel](state, { payload: { id, name } }) {
+    const index = _.findIndex(state, (item) => item.id === id);
+    const changedChannel = { id, name, removable: true };
+    const newState = [...state.slice(0, index), changedChannel, ...state.slice(index + 1)];
+    return newState;
+  },
 });
 
 export const messages = createReducer([], {

@@ -4,16 +4,18 @@ import axios from 'axios';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import routes from '../../routes';
 
-const Add = (props) => {
-  const { onHide } = props;
-  const channelsPath = routes.channelsPath();
+const Rename = (props) => {
+  const { modalContext, onHide } = props;
+  const { context: { id, currentChannelName } } = modalContext;
+  const channelPath = routes.channelPath(id);
+
   const formik = useFormik({
     initialValues: {
-      channelName: '',
+      channelName: currentChannelName,
     },
     onSubmit: ({ channelName }, { setSubmitting, setErrors }) => {
       setSubmitting(true);
-      axios.post(channelsPath, { data: { attributes: { name: channelName } } })
+      axios.patch(channelPath, { data: { attributes: { name: channelName } } })
         .then(() => {
           setSubmitting(false);
           onHide();
@@ -33,7 +35,7 @@ const Add = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Add</Modal.Title>
+        <Modal.Title>Rename</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={formik.handleSubmit}>
@@ -47,11 +49,11 @@ const Add = (props) => {
               requred="true"
             />
           </FormGroup>
-          <input className="btn btn-primary" type="submit" value="Add" />
+          <input className="btn btn-primary" type="submit" value="Rename" />
         </form>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default Add;
+export default Rename;

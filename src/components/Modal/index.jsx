@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Add from './Add.jsx';
 import Remove from './Remove.jsx';
+import Rename from './Rename.jsx';
 import * as actions from '../../actions';
 
 const modals = {
   adding: Add,
   removing: Remove,
+  renaming: Rename,
 };
 
 const getModal = (type) => modals[type];
