@@ -12,8 +12,8 @@ const Remove = (props) => {
     e.preventDefault();
     axios.delete(channelPath)
       .then(() => {
-        onHide();
         setErrors({ message: '' });
+        onHide();
       })
       .catch((err) => {
         setErrors({ message: `Has been error: ${err}, try again, please` });
@@ -37,6 +37,7 @@ const Remove = (props) => {
       <Modal.Body>
         {renderAlert()}
         <form onSubmit={onSubmit}>
+          <div>Are you sure that you want remove the channel?</div>
           <FormGroup />
           <input className="btn btn-primary" type="submit" value="Remove" />
         </form>
