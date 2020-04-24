@@ -9,7 +9,6 @@ const Main = () => (
     </div>
     <footer>
       <Form />
-      <div className="notification-bar">Here will be notification-bar</div>
     </footer>
   </main>
 );

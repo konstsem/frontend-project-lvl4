@@ -35,13 +35,15 @@ const Rename = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Rename</Modal.Title>
+        <Modal.Title>Rename channel</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {formik.errors.message && <div className="alert alert-warning">{formik.errors.message}</div>}
         <form onSubmit={formik.handleSubmit}>
           <FormGroup>
             <FormControl
               name="channelName"
+              placeholder="Enter channel name"
               onChange={formik.handleChange}
               value={formik.values.channelName}
               ref={inputRef}

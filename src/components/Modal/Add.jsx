@@ -33,13 +33,15 @@ const Add = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Add</Modal.Title>
+        <Modal.Title>Add new channel</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {formik.errors.message && <div className="alert alert-warning">{formik.errors.message}</div>}
         <form onSubmit={formik.handleSubmit}>
           <FormGroup>
             <FormControl
               name="channelName"
+              placeholder="Enter new channel name"
               onChange={formik.handleChange}
               value={formik.values.channelName}
               ref={inputRef}

@@ -24,9 +24,6 @@ const NewMessageForm = ({ currentChannelId }) => {
     <Formik
       initialValues={{ message: '' }}
       onSubmit={({ message }, { setSubmitting, resetForm, setErrors }) => {
-        // setTimeout(() => {
-        //   setSubmitting(false);
-        // }, 5000);
         // send message to server
         setSubmitting(true);
         axios.post(messagesPath, { data: { attributes: { author: userName, text: message } } })
@@ -41,9 +38,9 @@ const NewMessageForm = ({ currentChannelId }) => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form className="form">
+        <Form>
+          <ErrorMessage name="message" component="div" className="alert alert-warning" role="alert" />
           <Field className="container-fluid" type="text" name="message" autoFocus disabled={isSubmitting} required />
-          <ErrorMessage name="message" component="div" />
         </Form>
       )}
     </Formik>
