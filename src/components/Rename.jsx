@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
-import routes from '../../routes';
+import routes from '../routes';
 
 const Rename = (props) => {
   const { modalContext, onHide } = props;

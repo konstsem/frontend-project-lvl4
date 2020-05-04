@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from '../Form/Form';
-import Messages from '../Messages/Messages';
+import Form from './Form';
+import Messages from './Messages';
 
 const Main = () => (
   <main className="main container-fluid container-fluid d-flex flex-column justify-content-between">

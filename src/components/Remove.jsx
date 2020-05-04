@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Modal, FormGroup } from 'react-bootstrap';
-import routes from '../../routes';
+import routes from '../routes';
 
 const Remove = (props) => {
   const { modalContext, onHide } = props;

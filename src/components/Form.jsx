@@ -7,8 +7,8 @@ import {
   ErrorMessage,
 } from 'formik';
 import axios from 'axios';
-import UserNameContext from '../../context';
-import routes from '../../routes';
+import UserNameContext from '../context';
+import routes from '../routes';
 
 const mapStateToProps = (state) => {
   const props = {

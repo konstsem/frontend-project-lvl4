@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import cn from 'classnames';
-import * as actions from '../../actions';
+import * as actions from '../actions';
 
 const mapStateToProps = (state) => {
   const props = {
