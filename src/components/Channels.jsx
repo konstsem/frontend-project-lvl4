@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import cn from 'classnames';
-import * as actions from '../actions';
+import { setModal } from '../slices/modal';
+import { setCurrentChannel } from '../slices/activeChannel';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -14,8 +15,8 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  setCurrentChannel: actions.setCurrentChannel,
-  setModal: actions.setModal,
+  setCurrentChannel,
+  setModal,
 };
 
 const Channels = (props) => {
@@ -40,7 +41,7 @@ const Channels = (props) => {
       container: true,
       'text-lowercase': true,
       'bg-aside': id !== currentChannelId,
-      current: id === currentChannelId,
+      active: id === currentChannelId,
       'd-flex': true,
       'outline-none': true,
       'border-0': true,

@@ -4,21 +4,17 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
 import UserNameContext from './context';
-import * as reducers from './reducers';
-import {
-  addChannel,
-  addMessage,
-  removeChannel,
-  renameChannel,
-  setCurrentChannel,
-} from './actions';
+import { addChannel, removeChannel, renameChannel } from './slices/channels';
+import { addMessage } from './slices/messages';
+import { setCurrentChannel } from './slices/activeChannel';
 import Channels from './components/Channels';
 import Main from './components/Main';
 import Modal from './components/Modal';
+import rootReducer from './slices';
 
 export default (gon, userName) => {
   const store = configureStore({
-    reducer: { ...reducers },
+    reducer: rootReducer,
     preloadedState: {
       ...gon,
       modal: {

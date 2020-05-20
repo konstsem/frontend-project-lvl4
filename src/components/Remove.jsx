@@ -18,7 +18,6 @@ const Remove = (props) => {
       .catch((err) => {
         setErrors({ message: `Has been error: ${err}, try again, please` });
       });
-    // I need delete all messages of current channel
   };
 
   const renderAlert = () => {
