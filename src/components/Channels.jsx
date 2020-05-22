@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import cn from 'classnames';
-import { setModal } from '../slices/modal';
-import { setCurrentChannel } from '../slices/activeChannel';
+import { setModal as setModalAction } from '../slices/modal';
+import { setCurrentChannel as setCurrentChannelAction } from '../slices/activeChannel';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  setCurrentChannel,
-  setModal,
+  setCurrentChannel: setCurrentChannelAction,
+  setModal: setModalAction,
 };
 
 const Channels = (props) => {
