@@ -11,12 +11,12 @@ const mapStateToProps = ({ messages, currentChannelId }) => {
 const Messages = (props) => {
   const { messages } = props;
   return messages.length ? (
-    <div className="messages">
+    <div>
       {messages.map(({ id, text, author }) => (
-        <div className="message" key={`${author}-${id}`}>
-          <div className="message__main">
-            <div className="message__author-name"><b>{author}</b></div>
-            <p className="message__text">{text}</p>
+        <div key={`${author}-${id}`}>
+          <div>
+            <div><b>{author}</b></div>
+            <p>{text}</p>
           </div>
         </div>
       ))}

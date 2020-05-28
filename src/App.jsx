@@ -37,7 +37,7 @@ export default (gon, userName) => {
   const rootEl = document.getElementById('chat');
   render(
     <Provider store={store}>
-      <div className="app wrapper d-flex">
+      <div className="d-flex">
         <Channels />
         <UserNameContext.Provider value={userName}>
           <Main />

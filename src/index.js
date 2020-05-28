@@ -20,5 +20,5 @@ if (!userName) {
   cookies.set('name', userName);
 }
 
-console.log(gon);
+// console.log(gon);
 app(gon, userName);

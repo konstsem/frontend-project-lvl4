@@ -66,11 +66,11 @@ const Channels = (props) => {
   };
 
   return (
-    <aside className="channels d-flex flex-column bg-aside text-main pt-1">
-      <div className="channels__title">
+    <aside className="d-flex flex-column bg-aside text-main pt-1">
+      <div>
         Channels
       </div>
-      <div className="channels__wrapper d-flex flex-column">
+      <div className="d-flex flex-column">
         {channels.map(renderChannel)}
       </div>
       <div className="mt-auto">
