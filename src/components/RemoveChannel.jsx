@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Modal, FormGroup } from 'react-bootstrap';
 import routes from '../routes';
 
-const Remove = (props) => {
+const RemoveChannel = (props) => {
   const { modalContext, onHide } = props;
   const { context: { id } } = modalContext;
   const channelPath = routes.channelPath(id);
@@ -38,11 +38,11 @@ const Remove = (props) => {
         <form onSubmit={onSubmit}>
           <div>Are you sure that you want remove the channel?</div>
           <FormGroup />
-          <input className="btn btn-primary" type="submit" value="Remove" />
+          <input className="btn btn-primary" type="submit" value="Remove channel" />
         </form>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default Remove;
+export default RemoveChannel;

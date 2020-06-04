@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import routes from '../routes';
 
-const Rename = (props) => {
+const RenameChannel = (props) => {
   const { modalContext, onHide } = props;
   const { context: { id, currentChannelName } } = modalContext;
   const channelPath = routes.channelPath(id);
@@ -51,11 +51,11 @@ const Rename = (props) => {
               requred="true"
             />
           </FormGroup>
-          <input className="btn btn-primary" type="submit" value="Rename" />
+          <input className="btn btn-primary" type="submit" value="Rename channel" />
         </form>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default Rename;
+export default RenameChannel;

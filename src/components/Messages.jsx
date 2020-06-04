@@ -1,15 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const mapStateToProps = ({ messages, currentChannelId }) => {
-  const props = {
-    messages: messages.filter((message) => message.channelId === currentChannelId),
-  };
-  return props;
-};
-
-const Messages = (props) => {
-  const { messages } = props;
+const Messages = () => {
+  const messages = useSelector(
+    (state) => state.messages.filter((message) => message.channelId === state.currentChannelId),
+  );
   return messages.length ? (
     <div>
       {messages.map(({ id, text, author }) => (
@@ -24,4 +19,4 @@ const Messages = (props) => {
   ) : null;
 };
 
-export default connect(mapStateToProps)(Messages);
+export default Messages;

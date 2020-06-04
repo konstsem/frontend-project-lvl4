@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Formik,
   Form,
@@ -10,14 +10,8 @@ import axios from 'axios';
 import UserNameContext from '../context';
 import routes from '../routes';
 
-const mapStateToProps = (state) => {
-  const props = {
-    currentChannelId: state.currentChannelId,
-  };
-  return props;
-};
-
-const NewMessageForm = ({ currentChannelId }) => {
+const NewMessageForm = () => {
+  const currentChannelId = useSelector((state) => state.currentChannelId);
   const userName = useContext(UserNameContext);
   const messagesPath = routes.channelMessagesPath(currentChannelId);
   return (
@@ -47,4 +41,4 @@ const NewMessageForm = ({ currentChannelId }) => {
   );
 };
 
-export default connect(mapStateToProps)(NewMessageForm);
+export default NewMessageForm;

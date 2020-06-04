@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import routes from '../routes';
 
-const Add = (props) => {
+const AddChannel = (props) => {
   const { onHide } = props;
   const channelsPath = routes.channelsPath();
   const formik = useFormik({
@@ -49,11 +49,11 @@ const Add = (props) => {
               requred="true"
             />
           </FormGroup>
-          <input className="btn btn-primary" type="submit" value="Add" />
+          <input className="btn btn-primary" type="submit" value="Add channel" />
         </form>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default Add;
+export default AddChannel;

@@ -1,36 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 import cn from 'classnames';
-import { setModal as setModalAction } from '../slices/modal';
-import { setCurrentChannel as setCurrentChannelAction } from '../slices/activeChannel';
+import { setModal } from '../slices/modal';
+import { setCurrentChannel } from '../slices/activeChannel';
 
-const mapStateToProps = (state) => {
-  const props = {
-    channels: state.channels,
-    currentChannelId: state.currentChannelId,
-    currentChannelName: _.find(state.channels, (item) => item.id === state.currentChannelId).name,
-  };
-  return props;
-};
-
-const actionCreators = {
-  setCurrentChannel: setCurrentChannelAction,
-  setModal: setModalAction,
-};
-
-const Channels = (props) => {
-  const {
-    channels,
-    currentChannelId,
-    currentChannelName,
-    setCurrentChannel,
-    setModal,
-  } = props;
-
+const Channels = () => {
+  const dispatch = useDispatch();
+  const channels = useSelector((state) => state.channels);
+  const currentChannelId = useSelector((state) => state.currentChannelId);
+  const currentChannelName = useSelector(
+    (state) => _.find(state.channels, (item) => item.id === state.currentChannelId).name,
+  );
   const handleCurrentChannel = (id) => (e) => {
     e.preventDefault();
-    setCurrentChannel(id);
+    dispatch(setCurrentChannel(id));
   };
 
   const isRemovable = () => _.find(channels, (channel) => channel.id === currentChannelId)
@@ -74,13 +58,13 @@ const Channels = (props) => {
         {channels.map(renderChannel)}
       </div>
       <div className="mt-auto">
-        <button onClick={() => setModal({ type: 'adding', context: null })} type="button" className={cn({ ...buttonClasses, 'text-white': true })}>
+        <button onClick={() => dispatch(setModal({ type: 'adding', context: null }))} type="button" className={cn({ ...buttonClasses, 'text-white': true })}>
           <span>Add channel</span>
         </button>
-        <button onClick={() => setModal({ type: 'renaming', context: { id: currentChannelId, currentChannelName } })} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
+        <button onClick={() => dispatch(setModal({ type: 'renaming', context: { id: currentChannelId, currentChannelName } }))} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
           <span>Rename channel</span>
         </button>
-        <button onClick={() => setModal({ type: 'removing', context: { id: currentChannelId } })} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
+        <button onClick={() => dispatch(setModal({ type: 'removing', context: { id: currentChannelId } }))} type="button" className={cn(removableButtonClasses)} disabled={!isRemovable()}>
           <span>Remove channel</span>
         </button>
       </div>
@@ -88,4 +72,4 @@ const Channels = (props) => {
   );
 };
 
-export default connect(mapStateToProps, actionCreators)(Channels);
+export default Channels;

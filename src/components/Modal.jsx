@@ -1,34 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Add from './Add.jsx';
-import Remove from './Remove.jsx';
-import Rename from './Rename.jsx';
-import * as actions from '../slices/modal';
+import { useSelector, useDispatch } from 'react-redux';
+import AddChannel from './AddChannel.jsx';
+import RemoveChannel from './RemoveChannel.jsx';
+import RenameChannel from './RenameChannel.jsx';
+import { hideModal } from '../slices/modal';
 
 const modals = {
-  adding: Add,
-  removing: Remove,
-  renaming: Rename,
+  adding: AddChannel,
+  removing: RemoveChannel,
+  renaming: RenameChannel,
 };
 
 const getModal = (type) => modals[type];
 
-const mapStateToProps = (state) => {
-  const props = {
-    modal: state.modal,
-  };
-  return props;
-};
-
-const actionCreators = {
-  setModal: actions.setModal,
-  hideModal: actions.hideModal,
-};
-
-const Modal = (props) => {
-  const { modal, hideModal } = props;
-  // const handleHide = () => setModal({ type: null, context: null });
-  // const showModal = (type, context = null) => setModal({ type, context });
+const Modal = () => {
+  const modal = useSelector((state) => state.modal);
+  const dispatch = useDispatch();
 
   const renderModal = (modalContext, handleHide) => {
     if (modalContext.type === null) return null;
@@ -38,9 +25,9 @@ const Modal = (props) => {
   };
   return (
     <>
-      {renderModal(modal, hideModal)}
+      {renderModal(modal, () => dispatch(hideModal()))}
     </>
   );
 };
 
-export default connect(mapStateToProps, actionCreators)(Modal);
+export default Modal;
