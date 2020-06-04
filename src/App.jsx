@@ -38,7 +38,7 @@ export default (gon, userName) => {
   const rootEl = document.getElementById('chat');
   render(
     <Provider store={store}>
-      <div className="d-flex">
+      <div className="h-100 d-flex">
         <Channels />
         <UserNameContext.Provider value={userName}>
           <Main />
