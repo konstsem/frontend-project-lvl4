@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './Form';
+import NewMessageForm from './NewMessageForm';
 import Messages from './Messages';
 
 const Main = () => (
@@ -8,7 +8,7 @@ const Main = () => (
       <Messages />
     </div>
     <footer>
-      <Form />
+      <NewMessageForm />
     </footer>
   </main>
 );
