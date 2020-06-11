@@ -8,23 +8,24 @@ const RenameChannel = (props) => {
   const { modalContext, onHide } = props;
   const { context: { id, currentChannelName } } = modalContext;
   const channelPath = routes.channelPath(id);
+  const handleSubmit = async ({ channelName }, { setSubmitting, setErrors }) => {
+    setSubmitting(true);
+    try {
+      await axios.patch(channelPath, { data: { attributes: { name: channelName } } });
+      setSubmitting(false);
+      onHide();
+    } catch (e) {
+      setErrors({ message: `Has been error: ${e}, try again, please` });
+      setSubmitting(false);
+      throw (e);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
       channelName: currentChannelName,
     },
-    onSubmit: ({ channelName }, { setSubmitting, setErrors }) => {
-      setSubmitting(true);
-      axios.patch(channelPath, { data: { attributes: { name: channelName } } })
-        .then(() => {
-          setSubmitting(false);
-          onHide();
-        })
-        .catch((err) => {
-          setErrors({ message: `Has been error: ${err}, try again, please` });
-          setSubmitting(false);
-        });
-    },
+    onSubmit: handleSubmit,
   });
 
   const inputRef = useRef();

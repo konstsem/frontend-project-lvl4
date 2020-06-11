@@ -8,16 +8,16 @@ const RemoveChannel = (props) => {
   const { context: { id } } = modalContext;
   const channelPath = routes.channelPath(id);
   const [errors, setErrors] = useState({ message: '' });
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    axios.delete(channelPath)
-      .then(() => {
-        setErrors({ message: '' });
-        onHide();
-      })
-      .catch((err) => {
-        setErrors({ message: `Has been error: ${err}, try again, please` });
-      });
+    try {
+      await axios.delete(channelPath);
+      setErrors({ message: '' });
+      onHide();
+    } catch (err) {
+      setErrors({ message: `Has been error: ${err}, try again, please` });
+      throw (err);
+    }
   };
 
   const renderAlert = () => {

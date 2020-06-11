@@ -7,22 +7,23 @@ import routes from '../routes';
 const AddChannel = (props) => {
   const { onHide } = props;
   const channelsPath = routes.channelsPath();
+  const handleSubmit = async ({ channelName }, { setSubmitting, setErrors }) => {
+    setSubmitting(true);
+    try {
+      await axios.post(channelsPath, { data: { attributes: { name: channelName } } });
+      setSubmitting(false);
+      onHide();
+    } catch (e) {
+      setErrors({ message: `Has been error: ${e}, try again, please` });
+      setSubmitting(false);
+      throw (e);
+    }
+  };
   const formik = useFormik({
     initialValues: {
       channelName: '',
     },
-    onSubmit: ({ channelName }, { setSubmitting, setErrors }) => {
-      setSubmitting(true);
-      axios.post(channelsPath, { data: { attributes: { name: channelName } } })
-        .then(() => {
-          setSubmitting(false);
-          onHide();
-        })
-        .catch((err) => {
-          setErrors({ message: `Has been error: ${err}, try again, please` });
-          setSubmitting(false);
-        });
-    },
+    onSubmit: handleSubmit,
   });
 
   const inputRef = useRef();

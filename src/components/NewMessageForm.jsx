@@ -14,22 +14,22 @@ const NewMessageForm = () => {
   const currentChannelId = useSelector((state) => state.currentChannelId);
   const userName = useContext(UserNameContext);
   const messagesPath = routes.channelMessagesPath(currentChannelId);
+  const handleSubmit = async ({ message }, { setSubmitting, resetForm, setErrors }) => {
+    setSubmitting(true);
+    try {
+      await axios.post(messagesPath, { data: { attributes: { author: userName, text: message } } });
+      resetForm();
+      setSubmitting(false);
+    } catch (e) {
+      setErrors({ message: `Has been error: ${e}, try again, please` });
+      setSubmitting(false);
+      throw (e);
+    }
+  };
   return (
     <Formik
-      initialValues={{ message: '' }}
-      onSubmit={({ message }, { setSubmitting, resetForm, setErrors }) => {
-        // send message to server
-        setSubmitting(true);
-        axios.post(messagesPath, { data: { attributes: { author: userName, text: message } } })
-          .then(() => {
-            setSubmitting(false);
-            resetForm();
-          })
-          .catch((err) => {
-            setErrors({ message: `Has been error: ${err}, try again, please` });
-            setSubmitting(false);
-          });
-      }}
+      initialValues={({ message: '' })}
+      onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
