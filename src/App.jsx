@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
 import UserNameContext from './context';
 import { addChannel, removeChannel, renameChannel } from './slices/channels';
-import { addMessage, removeMessageByChannelId } from './slices/messages';
+import { addMessage } from './slices/messages';
 import { setCurrentChannel } from './slices/activeChannel';
 import Channels from './components/Channels';
 import Main from './components/Main';
@@ -29,7 +29,6 @@ export default (gon, userName) => {
   socket.on('removeChannel', ({ data: { id } }) => {
     store.dispatch(setCurrentChannel(1));
     store.dispatch(removeChannel(id));
-    store.dispatch(removeMessageByChannelId(id));
   });
   socket.on('renameChannel', ({ data: { id, attributes: { name } } }) => {
     store.dispatch(renameChannel({ id, name }));
