@@ -12,6 +12,8 @@ import Main from './components/Main';
 import Modal from './components/Modal';
 import rootReducer from './slices';
 
+import './i18n';
+
 export default (gon, userName) => {
   const store = configureStore({
     reducer: rootReducer,

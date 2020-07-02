@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Modal, FormGroup, FormControl } from 'react-bootstrap';
 import routes from '../routes';
@@ -8,6 +9,7 @@ const RenameChannel = (props) => {
   const { modalContext, onHide } = props;
   const { context: { id, currentChannelName } } = modalContext;
   const channelPath = routes.channelPath(id);
+  const { t } = useTranslation('translation');
   const handleSubmit = async ({ channelName }, { setSubmitting, setErrors }) => {
     setSubmitting(true);
     try {
@@ -15,7 +17,7 @@ const RenameChannel = (props) => {
       setSubmitting(false);
       onHide();
     } catch (e) {
-      setErrors({ message: `Has been error: ${e}, try again, please` });
+      setErrors({ message: `${t('error')}: ${e}, ${t('try again')}` });
       setSubmitting(false);
       throw (e);
     }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import { Modal, FormGroup } from 'react-bootstrap';
 import routes from '../routes';
 
@@ -7,6 +8,7 @@ const RemoveChannel = (props) => {
   const { modalContext, onHide } = props;
   const { context: { id } } = modalContext;
   const channelPath = routes.channelPath(id);
+  const { t } = useTranslation('translation');
   const [errors, setErrors] = useState({ message: '' });
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ const RemoveChannel = (props) => {
       setErrors({ message: '' });
       onHide();
     } catch (err) {
-      setErrors({ message: `Has been error: ${err}, try again, please` });
+      setErrors({ message: `${t('error')}: ${err}, ${t('try again')}` });
       throw (err);
     }
   };

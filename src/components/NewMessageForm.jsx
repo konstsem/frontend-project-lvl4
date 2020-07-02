@@ -6,11 +6,13 @@ import {
   Field,
   ErrorMessage,
 } from 'formik';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import UserNameContext from '../context';
 import routes from '../routes';
 
 const NewMessageForm = () => {
+  const { t } = useTranslation('translation', { useSuspense: false });
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const userName = useContext(UserNameContext);
   const messagesPath = routes.channelMessagesPath(currentChannelId);
@@ -21,7 +23,7 @@ const NewMessageForm = () => {
       resetForm();
       setSubmitting(false);
     } catch (e) {
-      setErrors({ message: `Has been error: ${e}, try again, please` });
+      setErrors({ message: `${t('error')}: ${e}, ${t('try again')}` });
       setSubmitting(false);
       throw (e);
     }
