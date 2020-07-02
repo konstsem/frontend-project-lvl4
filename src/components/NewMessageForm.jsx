@@ -11,7 +11,7 @@ import UserNameContext from '../context';
 import routes from '../routes';
 
 const NewMessageForm = () => {
-  const currentChannelId = useSelector((state) => state.currentChannelId);
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const userName = useContext(UserNameContext);
   const messagesPath = routes.channelMessagesPath(currentChannelId);
   const handleSubmit = async ({ message }, { setSubmitting, resetForm, setErrors }) => {

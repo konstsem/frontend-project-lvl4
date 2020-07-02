@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 
 const Messages = () => {
   const messages = useSelector(
-    (state) => state.messages.filter((message) => message.channelId === state.currentChannelId),
+    (state) => state.messages.filter(
+      (message) => message.channelId === state.channels.currentChannelId,
+    ),
   );
   return messages.length ? (
     <div>

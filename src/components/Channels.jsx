@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 import cn from 'classnames';
 import { setModal } from '../slices/modal';
-import { setCurrentChannel } from '../slices/activeChannel';
+import { setCurrentChannel } from '../slices/channels';
 
 const Channels = () => {
   const dispatch = useDispatch();
-  const channels = useSelector((state) => state.channels);
-  const currentChannelId = useSelector((state) => state.currentChannelId);
+  const channels = useSelector((state) => state.channels.listChannels);
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const currentChannelName = useSelector(
-    (state) => _.find(state.channels, (item) => item.id === state.currentChannelId).name,
+    (state) => _.find(
+      state.channels.listChannels, (item) => item.id === state.channels.currentChannelId,
+    ).name,
   );
   const handleCurrentChannel = (id) => (e) => {
     e.preventDefault();
