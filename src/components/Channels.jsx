@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import _ from 'lodash';
 import cn from 'classnames';
 import { setModal } from '../slices/modal';
 import { setCurrentChannel } from '../slices/channels';
@@ -10,8 +9,8 @@ const Channels = () => {
   const channels = useSelector((state) => state.channels.listChannels);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
   const currentChannelName = useSelector(
-    (state) => _.find(
-      state.channels.listChannels, (item) => item.id === state.channels.currentChannelId,
+    (state) => state.channels.listChannels.find(
+      (item) => item.id === state.channels.currentChannelId,
     ).name,
   );
   const handleCurrentChannel = (id) => (e) => {
@@ -19,7 +18,7 @@ const Channels = () => {
     dispatch(setCurrentChannel(id));
   };
 
-  const isRemovable = () => _.find(channels, (channel) => channel.id === currentChannelId)
+  const isRemovable = () => channels.find((channel) => channel.id === currentChannelId)
     .removable;
 
   const renderChannel = ({ id, name }) => {

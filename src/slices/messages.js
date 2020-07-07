@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import _ from 'lodash';
 import { removeChannel } from './channels';
 
 const messages = createSlice({
@@ -10,7 +9,7 @@ const messages = createSlice({
   },
   extraReducers: {
     [removeChannel]:
-      (state, { payload: id }) => _.filter(state, (message) => message.channelId !== id),
+      (state, { payload: id }) => state.filter((message) => message.channelId !== id),
   },
 });
 

@@ -6,7 +6,6 @@ import io from 'socket.io-client';
 import UserNameContext from './context';
 import { addChannel, removeChannel, renameChannel } from './slices/channels';
 import { addMessage } from './slices/messages';
-// import { setCurrentChannel } from './slices/activeChannel';
 import Channels from './components/Channels';
 import Main from './components/Main';
 import Modal from './components/Modal';
@@ -18,7 +17,6 @@ export default (gon, userName) => {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState: {
-      // ...gon,
       channels: {
         listChannels: gon.channels,
         currentChannelId: gon.currentChannelId,
@@ -34,7 +32,6 @@ export default (gon, userName) => {
   socket.on('newChannel', ({ data: { attributes } }) => store.dispatch(addChannel(attributes)));
   socket.on('newMessage', ({ data: { attributes } }) => store.dispatch(addMessage(attributes)));
   socket.on('removeChannel', ({ data: { id } }) => {
-    // store.dispatch(setCurrentChannel(1));
     store.dispatch(removeChannel(id));
   });
   socket.on('renameChannel', ({ data: { id, attributes: { name } } }) => {

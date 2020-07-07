@@ -9,8 +9,6 @@ import cookies from 'js-cookie';
 import '../assets/application.scss';
 import app from './App';
 
-// import './i18n';
-
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
